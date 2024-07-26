@@ -2,9 +2,9 @@ version: '3.7'
 
 services:
   nodejs-app:
-    build: ./example-app
+    build: ./
     ports:
-      - '3000:3000'
+      - '3105:3105'
     networks:
       - monitoring
 
@@ -20,11 +20,13 @@ services:
   grafana:
     image: grafana/grafana
     ports:
-      - '3000:3000'
+      - '3106:3106'
     networks:
       - monitoring
     volumes:
       - grafana-data:/var/lib/grafana
+    environment:
+    - GF_SERVER_HTTP_PORT=3106
 
   cadvisor:
     image: google/cadvisor:latest
